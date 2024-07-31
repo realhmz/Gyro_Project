@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 10:45:48 by het-taja          #+#    #+#             */
-/*   Updated: 2024/07/31 11:41:06 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:05:27 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int main(int ac, char **av)
         cord = readline("");
         parce(data, cord);
         render(data);
-        free(cord);
-        cord = NULL;
+        // free(cord);
+        // cord = NULL;
 
     }
         mlx_loop(data->mlx);

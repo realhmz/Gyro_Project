@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 11:03:43 by het-taja          #+#    #+#             */
-/*   Updated: 2024/07/31 12:46:18 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:11:13 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void    init(t_data *data)
 }
 void    render(t_data *data)
 {
+    printf("is in \n\n");
+    mlx_clear_window(data->mlx, data->win);
+    mlx_destroy_image(data->mlx, data->img.img_ptr);
+    data->img = new_img(1000, 1000, data);
     draw_map(data);
     // mlx_put_image_to_window(data->mlx, data->win, data->img.img_ptr, 0, 0);
 }

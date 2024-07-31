@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:37:55 by het-taja          #+#    #+#             */
-/*   Updated: 2024/07/31 12:43:49 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:08:29 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ float rad(float deg)
 static int	ft_is_outofscreen(t_data *fdf, int x, int y, int z)
 {
 	// y1 *= -1;
-	x = (x * cos(ANGLE) - y * sin(ANGLE));
-	y = (x * sin(ANGLE) + y * cos(ANGLE));
+	x = (x * cos(rad(ANGLE)) - y * sin(rad(ANGLE)));
+	y = (x * sin(rad(ANGLE)) + y * cos(rad(ANGLE)));
 	y = (y * sin(rad(30)) - z * cos(rad(30)));
 	x += fdf->center;
 	y += fdf->center_y;
@@ -61,6 +61,10 @@ static int	ft_calc_const(t_data *data)
 					data->cnsty--;
 					data->center_y += 2;
 					data->center += 2;
+                    if (data->cnstx == 0)
+                        data->cnstx = 1;
+                    if (data->cnsty == 0)
+                        data->cnsty = 1;
 					// data->center++;
 					return (-1);
 				}
@@ -78,9 +82,9 @@ static void	ft_center(t_data *data)
 	float	d;
 	int		z;
 
-	printf("data y %d \n",data->cnsty); 
+	printf("data y %d \n",data->cnsty);
 	z = data->map->matrix[data->map->ordinate / 2][data->map->abscissa / 2][0];
-	i = ((data->map->abscissa / 2) - (data->map->ordinate / 2)) * cos(rad(30));
+	i = ((data->map->abscissa / 2) - (data->map->ordinate / 2)) * cos(data->Xa);
 	if ((500) > i)
 		data->center = (1000 / 2 / data->cnstx) - i;
 	else if ((1000 / 2) < i)
@@ -140,10 +144,12 @@ void draw_map(t_data *fdf)
 	y = 0;
 	y2 = 0;
 	y3 = 1;
-	angle = rad(45);
-	ft_center(fdf);
+	angle = fdf->Za;
+	// ft_calc_const(fdf);
+	// ft_center(fdf);
 	// while (ft_calc_const(fdf) != 0)
-	// 	ft_calc_const(fdf);
+    fdf->cnsty = 10;
+    fdf->cnstx = 10;
 	ft_center(fdf);
 	fdf->center_y += fdf->center_y / 2;
 
@@ -169,18 +175,18 @@ void draw_map(t_data *fdf)
 			tx3 = x3;
 			ty2 = y2;
 			ty3 = y3;
-			x1 = (x * cos(rad(angle)) - y * sin(rad(angle)));
-			y1 = (x * sin(rad(angle)) + y * cos(rad(angle)));
+			x1 = (x * cos(fdf->Xa) - y * sin(fdf->Ya));
+			y1 = (x * sin(fdf->Xa) + y * cos(fdf->Ya));
 
-			y1 = (y * sin(rad(30)) - z * cos(rad(30)));
+			y1 = (y * sin(fdf->Ya) - z * cos(fdf->Za));
 
-			tx2 = (x2 * cos(rad(angle)) - y2 * sin(rad(angle)));
-			ty2 = (x2 * sin(rad(angle)) + y2 * cos(rad(angle)));
-			ty2 = (y2 * sin(rad(30)) - z2 * cos(rad(30)));
+			tx2 = (x2 * cos(fdf->Xa) - y2 * sin(fdf->Ya));
+			ty2 = (x2 * sin(fdf->Xa) + y2 * cos(fdf->Ya));
+			ty2 = (y2 * sin(fdf->Ya) - z2 * cos(fdf->Za));
 			
-			tx3 = (x3 * cos(rad(angle)) - y3 * sin(rad(angle)));
-			ty3 = (x3 * sin(rad(angle)) + y3 * cos(rad(angle)));
-			ty3 = (y3 * sin(rad(30)) - z3 * cos(rad(30)));
+			tx3 = (x3 * cos(fdf->Xa) - y3 * sin(fdf->Ya));
+			ty3 = (x3 * sin(fdf->Xa) + y3 * cos(fdf->Ya));
+			ty3 = (y3 * sin(fdf->Ya) - z3 * cos(fdf->Za));
 
 
 			x1 += fdf->center;
@@ -189,6 +195,7 @@ void draw_map(t_data *fdf)
 			tx3 += fdf->center;
 			ty2 += fdf->center_y;
 			ty3 += fdf->center_y;
+            printf("pixel point x : %f,y : %f\n\n", x1 *fdf->cnstx, y1 *fdf->cnsty);
 			put_pixel_img(fdf->img, x1 * fdf->cnstx, y1 * fdf->cnsty, color);
 
 			if (y3 < fdf->map->ordinate && x3 < fdf->map->abscissa - 1)

@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 11:29:35 by het-taja          #+#    #+#             */
-/*   Updated: 2024/07/31 12:07:05 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:02:08 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,23 @@ int	get_height(char *filename)
 	char *line;
 	int height;
 	int fd;
-	int i = 0;
 
 	height = 0;
 	fd = open(filename, O_RDONLY);
-	line = malloc(100000);
-	read(fd, line,99999);
-	line[99999] = '\0';
-	while (line && line[i])
+	if (fd == -1)
+		ft_error("open error");
+	line = get_next_line(fd);
+	if(!line)
+		ft_error("reading line error");
+	while(line)
 	{
-		if (line[i] == '\n')
-			height++;
-		i++;
+		free(line);
+		line = get_next_line(fd);
+		height++;
 	}
 	free(line);
-	close(fd);
+	if(close(fd) == -1)
+		ft_error("close error <height>");
 	return(height);
 }
 
