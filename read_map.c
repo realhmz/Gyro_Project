@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 11:29:35 by het-taja          #+#    #+#             */
-/*   Updated: 2024/07/31 13:02:08 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/07/31 18:26:39 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ void	ft_get_map(char *filename, t_map_coord *map)
 		free(line);
 		i++;
 	}
-	ft_get_altitude_min_max(map);
+	// ft_get_altitude_min_max(map);
 	if (close(fd) == -1)
 		ft_error("file close error");
 }

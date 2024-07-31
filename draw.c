@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 12:37:55 by het-taja          #+#    #+#             */
-/*   Updated: 2024/07/31 13:08:29 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/07/31 18:28:54 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	ft_center(t_data *data)
 	float	d;
 	int		z;
 
-	printf("data y %d \n",data->cnsty);
+	// printf("data y %d \n",data->cnsty);
 	z = data->map->matrix[data->map->ordinate / 2][data->map->abscissa / 2][0];
 	i = ((data->map->abscissa / 2) - (data->map->ordinate / 2)) * cos(data->Xa);
 	if ((500) > i)
@@ -195,7 +195,7 @@ void draw_map(t_data *fdf)
 			tx3 += fdf->center;
 			ty2 += fdf->center_y;
 			ty3 += fdf->center_y;
-            printf("pixel point x : %f,y : %f\n\n", x1 *fdf->cnstx, y1 *fdf->cnsty);
+            // printf("pixel point x : %f,y : %f\n\n", x1 *fdf->cnstx, y1 *fdf->cnsty);
 			put_pixel_img(fdf->img, x1 * fdf->cnstx, y1 * fdf->cnsty, color);
 
 			if (y3 < fdf->map->ordinate && x3 < fdf->map->abscissa - 1)
