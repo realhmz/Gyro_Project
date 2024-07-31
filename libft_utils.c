@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 10:54:08 by het-taja          #+#    #+#             */
-/*   Updated: 2024/07/31 11:01:49 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:47:54 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int	ft_strlen(char *s)
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (s && s[i])
 		i++;
 	return (i);
 }
@@ -171,4 +171,19 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (sign * result);
+}
+static void	ft_putendl_fd(char *s, int fd)
+{
+	if (s)
+	{
+		while (*s)
+			write(fd, s++, 1);
+		write(fd, "\n", 1);
+	}
+}
+
+void	ft_error(char *message)
+{
+	ft_putendl_fd(message, STDERR_FILENO);
+	exit(1);
 }

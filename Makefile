@@ -3,7 +3,13 @@ MLX = -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -lread
 CFLAGS = -Wall 
 SRC =	main.c\
 		parce.c\
-		libft_utils.c
+		libft_utils.c\
+		render.c\
+		get_next_line.c\
+		read_map.c\
+		atoi_base.c\
+		utils.c
+
 		
 
 OBJ = $(SRC:.c=.o)

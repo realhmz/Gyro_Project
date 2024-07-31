@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parce.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/31 10:48:48 by het-taja          #+#    #+#             */
-/*   Updated: 2024/07/31 11:09:20 by het-taja         ###   ########.fr       */
+/*   Created: 2024/07/31 11:44:53 by het-taja          #+#    #+#             */
+/*   Updated: 2024/07/31 11:45:14 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gyro.h"
 
-void    parce(t_data *data, char *cord)
+
+int	ft_toupper(int x)
 {
-    char **cordinates;
-    // if (!cord)
-    //     return
-    cordinates = ft_split(cord, ',');
-    data->Xa = ft_atoi(cordinates[0]);
-    data->Ya = ft_atoi(cordinates[1]);
-    data->Za = ft_atoi(cordinates[2]);
-    printf("cords are x :%d  y : %d z %d \n\n", data->Xa, data->Ya, data->Za);
-    
+	if (x >= 97 && x <= 122)
+		return (x - 32);
+	return (x);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	while ((*s1 != '\0' || *s2 != '\0') && n > 0)
+	{
+		if (*s1 != *s2)
+			return ((unsigned char)*s1 - (unsigned char)*s2);
+		n--;
+		s1++;
+		s2++;
+	}
+	return (0);
 }
