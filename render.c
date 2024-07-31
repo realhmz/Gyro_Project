@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 11:03:43 by het-taja          #+#    #+#             */
-/*   Updated: 2024/07/31 11:20:54 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/07/31 12:46:18 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,8 @@ void    init(t_data *data)
 }
 void    render(t_data *data)
 {
-    int i = 0;
-    while (i < 100)
-    {
-        put_pixel_img(data->img, data->Xa +i,data->Ya, 0xFFD700);
-        i++;
-    }
-    
-    mlx_put_image_to_window(data->mlx, data->win, data->img.img_ptr, 0, 0);
+    draw_map(data);
+    // mlx_put_image_to_window(data->mlx, data->win, data->img.img_ptr, 0, 0);
 }
 
 void	put_pixel_img(t_img img, int x, int y, int color)

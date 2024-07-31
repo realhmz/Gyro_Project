@@ -6,7 +6,7 @@
 /*   By: het-taja <het-taja@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/31 10:44:48 by het-taja          #+#    #+#             */
-/*   Updated: 2024/07/31 11:46:15 by het-taja         ###   ########.fr       */
+/*   Updated: 2024/07/31 12:44:08 by het-taja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 #include <readline/readline.h>
 #include <fcntl.h>
 #include <stdlib.h>
-
+#include <math.h>
 
 #define PI 3.14159265358979323846
+#define ANGLE 45
 
 typedef struct s_img
 {
@@ -43,9 +44,13 @@ typedef struct s_map_coord
 
 typedef struct s_data
 {
-    int Xa;  
-    int Ya;  
-    int Za;
+    float Xa;  
+    float Ya;  
+    float Za;
+    int     center;
+    int     center_y;
+    int     cnstx;
+    int     cnsty;
     void    *mlx;
     void    *win;
     t_map_coord *map;
@@ -77,7 +82,10 @@ void    init(t_data *data);
 void    render(t_data *data);
 void	put_pixel_img(t_img img, int x, int y, int color);
 t_img	new_img(int w, int h, t_data *window);
+void draw_map(t_data *fdf);
+void    bresenham_line(t_data *data, int x0, int y0, int x1, int y1, int color);
 
+float rad(float deg);
 // get_next_line
 
 #define BUFFER_SIZE 100

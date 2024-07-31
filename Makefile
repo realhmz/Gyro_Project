@@ -8,7 +8,8 @@ SRC =	main.c\
 		get_next_line.c\
 		read_map.c\
 		atoi_base.c\
-		utils.c
+		utils.c\
+		draw.c\
 
 		
 
